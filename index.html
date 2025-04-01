@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập Ký Tự</title>
+    <script>
+        function checkInput() {
+            let textA = document.getElementById("textA").value;
+            if (textA.length === 0) {
+                alert("Vui lòng nhập nội dung!");
+                return false;
+            }
+            localStorage.setItem("textA", textA); // Lưu vào bộ nhớ
+            window.location.href = "verify.html"; // Chuyển đến trang kiểm tra
+        }
+
+        function limitText(event) {
+            let textA = document.getElementById("textA");
+            if (textA.value.length >= 10000 && event.inputType !== "deleteContentBackward") {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Nhập nội dung (tối đa 10.000 ký tự)</h2>
+    <textarea id="textA" rows="15" cols="80" maxlength="10000" oninput="limitText(event)"></textarea><br>
+    <button onclick="checkInput()">Tiếp tục</button>
+</body>
+</html>
+
